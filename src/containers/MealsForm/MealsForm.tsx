@@ -1,50 +1,44 @@
 import React, {useState} from 'react';
 import {CATEGORIES} from "../../Categories";
-import {useNavigate} from "react-router-dom";
-import {ApiMeals, ApiMealsMutation} from "../../types";
-import axiosApi from "../../axiosApi";
+import {Meals, MealsMutation} from "../../types";
 
 interface Props {
-    onSubmit: (meal: ApiMeals) => void;
-    existingMeal?: ApiMealsMutation;
-    isEdit?: boolean;
-    isLoading?: boolean;
+    onSubmit: (meal: Meals) => void;
 }
 
-const initialState: ApiMealsMutation = {
-    name: '',
-    descriptions: '',
-    calories: ''
-};
 
-const MealsForm: React.FC<Props> = ({onSubmit, existingMeal= initialState}) => {
-    const [meals, setMeals] = useState<ApiMealsMutation>(existingMeal);
+const MealsForm: React.FC<Props> = ({onSubmit}) => {
+    const [meal, setMeal] =useState<MealsMutation>({
+            name: '', descriptions: '',  calories: ''
+    });
 
-       const onMealChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const changeMeal = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const {name, value} = e.target;
-        setMeals(prev => ({...prev, [name]: value}));
+
+        setMeal(prev => ({...prev, [name]: value}));
     };
 
     const onFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-      onSubmit ({
-          ...meals,
-          calories: parseFloat(meals.calories),
-      });
+        onSubmit({
+            id: Math.random().toString(),
+            ...meal,
+            calories: parseFloat(meal.calories),
+        })
     };
 
-    return (
+   return (
         <div className='row mt-2 w-50 position-absolute top-10'>
             <div className='container-fluid'>
                 <strong>Total calories: </strong>
             </div>
-            <form className='form-group  ms-5' onSubmit={onFormSubmit}>
+            <form onSubmit={onFormSubmit} className='form-group  ms-5'>
                 <select
                     id='name' name='name'
                     className='form-select mb-2'
                     required
-                    value={meals.name}
-                    onChange={onMealChange}
+                    value={meal.name}
+                    onChange={changeMeal}
                 >
                     <option value=''>Select category</option>
                     {CATEGORIES.map(meal => (
@@ -55,16 +49,16 @@ const MealsForm: React.FC<Props> = ({onSubmit, existingMeal= initialState}) => {
                     id='descriptions' name='descriptions'
                     className='form-select mb-2'
                     required
-                    value={meals.descriptions}
-                    onChange={onMealChange}
+                    value={meal.descriptions}
+                    onChange={changeMeal}
                 >
                 </textarea>
                 <input
                     id='calories' name='calories'
                     className='form-select mb-2'
                     required type="number"
-                    value={meals.calories}
-                    onChange={onMealChange}
+                    value={meal.calories}
+                    onChange={changeMeal}
                 >
                 </input>
                 <button className="btn btn-primary" type="submit">
@@ -73,6 +67,7 @@ const MealsForm: React.FC<Props> = ({onSubmit, existingMeal= initialState}) => {
             </form>
 
         </div>
+
     );
 };
 

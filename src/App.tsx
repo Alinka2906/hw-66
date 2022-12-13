@@ -1,75 +1,72 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import './App.css';
-import Layout from './components/Layout/Layout';
-import {Route, Routes} from 'react-router-dom';
-import {useLocation, useNavigate} from 'react-router-dom';
-import {ApiMeals, CartMeal, Meals, MealsList} from './types';
-import axiosApi from './axiosApi';
-import Home from './components/Home/Home';
+import Layout from "./components/Layout/Layout";
+import MealsForm from "./containers/MealsForm/MealsForm";
+import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
+import {ApiMeals, PageMeal, Meals, MealsList} from "./types";
+import axiosApi from "./axiosApi";
+import MainMeals from "./containers/MainMeals/MainMeals";
+import Home from "./containers/Home/Home";
+import MealsItem from "./containers/MainMeals/MealsItem";
 
 function App() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [creating, setCreating] = useState(false);
-  const [meals, setMeals] = useState<Meals[]>([]);
-  const [pageMeals, setPageMeals] = useState<CartMeal[]>([]);
+    const navigate = useNavigate();
+    const [meals, setMeals] = useState<Meals[]>([]);
+    const [creating, setCreating] = useState(false);
+    const [pageMeal, setPageMeal] = useState<PageMeal[]>([]);
 
-  const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
 
-  const fetchMeals = useCallback(async () => {
-    try {
-      setLoading(true);
-      const mealsResponse = await axiosApi.get<MealsList | null>('/meals.json');
-      const meals = mealsResponse.data;
-      console.log(meals)
+    const addMeal = async (meal: ApiMeals) => {
+        try {
+            setCreating(true);
+            await axiosApi.post('/meals.json', meal);
+            navigate('/');
+        } finally {
+            setCreating(false)
+        }
+    };
 
-      let newMeals: Meals[] = [];
+    const fetchMeals = useCallback(async () => {
+        try {
+            setLoading(true);
+            const mealsResponse = await axiosApi.get<MealsList | null>('/meals.json');
+            const meals = mealsResponse.data;
+            console.log(meals);
 
-      if (meals) {
-        newMeals = Object.keys(meals).map(id => {
-          const meal = meals[id];
-          return {
-            ...meal,
-            id,
-          }
-        });
-        return;
-      }
-      setMeals(newMeals);
-    } finally {
-      setLoading(false)
-    }
-  }, []);
+            let newMeals: Meals[] = [];
 
-  useEffect(() => {
-    if (location.pathname === '/') {
-      void fetchMeals()
-    }
-  }, [fetchMeals, location]);
+            if (meals) {
+                newMeals = Object.keys(meals).map(id => {
+                    const meal = meals[id];
+                    return {
+                        ...meal,
+                        id
+                    };
+                });
+                return;
+            }
+            setMeals(newMeals);
+        } finally {
+            setLoading(false)
+        }
+    },[]);
 
-  const addToPage = (meal: Meals) => {
-    setPageMeals(prev => {
-      const existingIndex = prev.findIndex(item => {
-        return item.meal.id === meal.id;
-      });
-
-      return [...prev, {meal, amount: 1}];
-    });
-  };
+    useEffect(()=> {
+        void fetchMeals();
+    },[fetchMeals]);
 
 
-  return (
+
+return (
     <div className="App">
-      <Layout/>
-      <Routes>
-        <Route path='/' element={(
-          <Home mealsLoading={loading} meals={meals} addToPage={addToPage} pageMeals={pageMeals}
-                fetchMeals={fetchMeals}/>
-        )}
-        />
-      </Routes>
+        <Layout/>
+        <main className='d-flex justify-content-between mt-2'>
+            <MealsForm onSubmit={addMeal}/>
+            <MainMeals newMeals={pageMeal}/>
+        </main>
     </div>
-  );
+);
 }
 
 export default App;

@@ -1,6 +1,7 @@
 import React from 'react';
 import {CartMeal, Meals} from '../../types';
 import PageItem from './PageItem';
+import {NavLink} from 'react-router-dom';
 
 interface Props {
   pageMeals: CartMeal[];
@@ -24,6 +25,9 @@ const PageMeals: React.FC<Props> = ({pageMeals}) => {
           <div className="col-3 text-right">
             <strong>{total}</strong>
           </div>
+          <NavLink to={'/new-meal'} className="col-3 text-right btn btn-primary">
+            Add new meal
+          </NavLink>
         </div>
       </div>
     </>
