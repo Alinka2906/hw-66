@@ -11,10 +11,10 @@ const MealsItem: React.FC<Props>= ({newMeals, onDelete}) => {
 
 
     return (
-        <div className="card mb-2 d-flex justify-content-around w-25 ms-md-5">
+        <div className="card mb-2 d-flex w-25 ms-md-5">
             <div className="row no-gutters">
                 <div className="col">
-                    <div className="card-body bg-light">
+                    <div className="card-body border border-primary">
                         <h5 className="card-title ">Category: {newMeals.name}</h5>
                         <p className="card-text mt-3">Descriptions: {newMeals.descriptions}</p>
                         <p className="card-text">Calories: {newMeals.calories}</p>

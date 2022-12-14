@@ -25,12 +25,12 @@ const Home: React.FC<Props> = ({newMeals, fetchMeals}) => {
 
     return (
         <>
-          <div className="card mb-2 d-flex justify-content-around bg-light">
+          <div className="card mb-2 d-flex bg-light justify-content-around">
             <h4>Total calories</h4>
             <h4 className='text-danger'><strong>{totalCalories}</strong></h4>
-          <NavLink to='/meals-form' className='btn btn-primary'>Add new meal</NavLink>
+          <NavLink to='/meals-form' className='btn btn-primary'><strong>Add new meal</strong></NavLink>
           </div>
-          <div className='d-flex flex-wrap justify-content-around bg-light'>
+          <div className='d-flex flex-wrap justify-content-around'>
             {newMeals.map((newMeal) => (
                 <MealsItem  key={newMeal.id} newMeals={newMeal} onDelete={() => deleteMeal(newMeal.id)}/>
             ))}
