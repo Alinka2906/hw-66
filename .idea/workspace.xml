@@ -11,12 +11,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd3de55e-fd55-4114-b579-7d4d792b1f70" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/containers/MainMeals/Home.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/containers/MealsForm/MealsEdit.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/containers/MealsForm/MealsNew.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Page/PageItem.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Page/PageMeals.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Page/Pages.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/EditMeals/EditMeals.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/NewMeals/NewMeals.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Categories.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Categories.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NavBar/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NavBar/NavBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Home/Home.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/MainMeals/MainMeals.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/MainMeals/MealsItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/MainMeals/MealsItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/MealsForm/MealsForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/MealsForm/MealsForm.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +65,8 @@
       <workItem from="1670916507554" duration="319000" />
       <workItem from="1670935910851" duration="539000" />
       <workItem from="1670936503858" duration="89000" />
+      <workItem from="1670936621822" duration="11156000" />
+      <workItem from="1670988837842" duration="2478000" />
     </task>
     <task id="LOCAL-00001" summary="Создан репозиторий: компоненты, созданы компоненты MainForm, Spinner, Button Spinner.">
       <created>1670850279849</created>
@@ -80,7 +89,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670936255941</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="test">
+      <created>1670936664773</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1670936664773</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,13 +118,14 @@
     <MESSAGE value="Создан репозиторий: компоненты, созданы компоненты MainForm, Spinner, Button Spinner." />
     <MESSAGE value="Написана логика отправки запросов на сервер, сщзданф компонеты для получения данных с сервера" />
     <MESSAGE value="Добавлен компонент home" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлен компонент home" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1005" y="84" width="800" height="522" key="Vcs.Push.Dialog.v2" timestamp="1670936259382">
+    <state x="1005" y="84" width="800" height="522" key="Vcs.Push.Dialog.v2" timestamp="1670936672186">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1005" y="84" width="800" height="522" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1366.768@0.0.1920.1040" timestamp="1670936259382" />
+    <state x="1005" y="84" width="800" height="522" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1366.768@0.0.1920.1040" timestamp="1670936672185" />
     <state x="1072" y="136" width="587" height="502" key="find.popup" timestamp="1670863042979">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

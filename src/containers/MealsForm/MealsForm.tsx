@@ -1,16 +1,24 @@
 import React, {useState} from 'react';
 import {CATEGORIES} from "../../Categories";
 import {Meals, MealsMutation} from "../../types";
+import ButtonSpinner from '../../components/ButtonSpinner/ButtonSpinner';
 
 interface Props {
     onSubmit: (meal: Meals) => void;
+    existingMeal?: MealsMutation;
+  isEdit?: boolean;
+  isLoading?: boolean;
 }
 
+const initialState: MealsMutation = {
+  name: '',
+  descriptions: '',
+  calories: '',
+};
 
-const MealsForm: React.FC<Props> = ({onSubmit}) => {
-    const [meal, setMeal] =useState<MealsMutation>({
-            name: '', descriptions: '',  calories: ''
-    });
+
+const MealsForm: React.FC<Props> = ({onSubmit, existingMeal = initialState, isEdit, isLoading}) => {
+    const [meal, setMeal] =useState<MealsMutation>(existingMeal);
 
     const changeMeal = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const {name, value} = e.target;
@@ -30,7 +38,7 @@ const MealsForm: React.FC<Props> = ({onSubmit}) => {
    return (
         <div className='row mt-2 w-50 position-absolute top-10'>
             <div className='container-fluid'>
-                <strong>Total calories: </strong>
+              <h4>{isEdit ? 'Edit' : 'Add new meal'}</h4>
             </div>
             <form onSubmit={onFormSubmit} className='form-group  ms-5'>
                 <select
@@ -43,7 +51,7 @@ const MealsForm: React.FC<Props> = ({onSubmit}) => {
                     <option value=''>Select category</option>
                     {CATEGORIES.map(meal => (
                         <option key={meal.id} value={meal.id}>{meal.name}</option>
-                    ))}
+                      ))}
                 </select>
                 <textarea
                     id='descriptions' name='descriptions'
@@ -61,9 +69,10 @@ const MealsForm: React.FC<Props> = ({onSubmit}) => {
                     onChange={changeMeal}
                 >
                 </input>
-                <button className="btn btn-primary" type="submit">
-                    Save
-                </button>
+              <button type="submit" disabled={isLoading} className="btn btn-primary">
+                {isLoading && <ButtonSpinner/>}
+                {isEdit ? 'Update' : 'Create'}
+              </button>
             </form>
 
         </div>

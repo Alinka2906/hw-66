@@ -5,9 +5,9 @@ import MealsForm from "./containers/MealsForm/MealsForm";
 import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import {ApiMeals, PageMeal, Meals, MealsList} from "./types";
 import axiosApi from "./axiosApi";
-import MainMeals from "./containers/MainMeals/MainMeals";
-import Home from "./containers/Home/Home";
-import MealsItem from "./containers/MainMeals/MealsItem";
+import Home from "./containers/MainMeals/Home";
+import MealsEdit from './containers/MealsForm/MealsEdit';
+import MealsNew from './containers/MealsForm/MealsNew';
 
 function App() {
     const navigate = useNavigate();
@@ -44,7 +44,6 @@ function App() {
                         id
                     };
                 });
-                return;
             }
             setMeals(newMeals);
         } finally {
@@ -53,7 +52,7 @@ function App() {
     },[]);
 
     useEffect(()=> {
-        void fetchMeals();
+        fetchMeals().catch(console.error);
     },[fetchMeals]);
 
 
@@ -61,10 +60,13 @@ function App() {
 return (
     <div className="App">
         <Layout/>
-        <main className='d-flex justify-content-between mt-2'>
-            <MealsForm onSubmit={addMeal}/>
-            <MainMeals newMeals={pageMeal}/>
-        </main>
+        <Routes>
+            <Route path='/' element={(
+              <Home newMeals={meals} fetchMeals={fetchMeals} mealsLoading={loading}/>
+              )}/>
+            <Route path='/meals-form' element={(<MealsForm onSubmit={addMeal}/>)}/>
+            <Route path="/edit-meals/:id" element={(<MealsEdit/>)}/>
+        </Routes>
     </div>
 );
 }

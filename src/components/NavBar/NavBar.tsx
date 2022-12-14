@@ -3,9 +3,9 @@ import React from 'react';
 const NavBar = () => {
 
     return (
-        <div className="navbar navbar-expand-sm navbar-dark bg-primary">
+        <div className="text-center navbar-dark bg-primary pt-2 pb-2">
             <div className='container-fluid'>
-                <span><strong>Calories tracker</strong></span>
+              <h4><span><strong>Calories tracker</strong></span></h4>
             </div>
         </div>
     );
